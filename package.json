@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-adapter-gsuid",
   "description": "连接到gsuid",
-  "version": "0.0.1",
+  "version": "1.1.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -9,14 +9,33 @@
     "dist"
   ],
   "license": "MIT",
-  "scripts": {},
   "keywords": [
     "chatbot",
     "koishi",
     "plugin"
   ],
-  "devDependencies": {},
+  "koishi": {
+    "description": {
+      "zh": "早柚核心适配器优化重制版 支持Yunzai"
+    },
+    "service": {
+      "required": [
+        "database"
+      ],
+      "optional": [
+        "assets",
+        "console"
+      ]
+    }
+  },
   "peerDependencies": {
-    "koishi": "4.18.7"
+    "@koishijs/plugin-console": "^5.12.1",
+    "koishi": "^4.18.7"
+  },
+  "dependencies": {
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@koishijs/client": "^5.12.1"
   }
 }
