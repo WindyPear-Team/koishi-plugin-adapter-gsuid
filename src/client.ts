@@ -73,7 +73,7 @@ export class GsuidCoreClient {
                         }
                     }
                 } else {
-                    parsed.flat().forEach((element) => {
+                    parsed.flat().forEach(async (element) => {
                         const p = msgId && config.passive ? wrapPassive([element], msgId) : [element];
                         if (config.dev) logger.info(msgId);
                         if (msgId && SessionEventManagerMap.get(msgId)) {
@@ -83,6 +83,10 @@ export class GsuidCoreClient {
                                 bot.sendMessage(message.target_id, p, message.target_id);
                             } else if (message.target_type === 'direct') {
                                 bot.sendPrivateMessage(message.target_id, p);
+                                /*await bot.sendPrivateMessage(message.target_id, {
+                                    content: element,
+                                    msgId
+                                });*/
                             } else if (message.target_type === 'channel') {
                                 const id = findChannelId(message) ?? message.target_id;
                                 bot.sendMessage(id, p, message.target_id);

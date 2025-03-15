@@ -99,8 +99,13 @@ export function apply(ctx: Context, config: Config) {
 
         // 记录 messageId
         if (session.event.message.id) {
-            const key = `${session.guildId}`;
-            lastMessageIds.set(key, session.event.message.id);
+            if (!session.isDirect) {
+                const key = `${session.guildId}`;
+                lastMessageIds.set(key, session.event.message.id);
+            } else {
+                const key = `${session.userId}`;
+                lastMessageIds.set(key, session.event.message.id);
+            }
             new SessionEventManager(session, message.msg_id);
         }
     });
